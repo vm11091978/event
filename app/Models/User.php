@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'active',
+        'is_admin',
     ];
 
     /**
@@ -32,6 +34,14 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function events()
+    {
+        return $this->belongsToMany(Event::class);
+    }
 
     /**
      * Get the attributes that should be cast.
