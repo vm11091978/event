@@ -26,4 +26,15 @@ class Category extends Model
     {
         return $this->belongsToMany(Event::class);
     }
+
+    /**
+     * @return Category[]|Collection
+     */
+    public function getCategories()
+    {
+        $categories = Category::where('active', true)
+            ->get();
+
+        return $categories;
+    }
 }

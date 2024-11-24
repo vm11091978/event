@@ -3,6 +3,9 @@
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\Admin\AdminEventController;
+use App\Http\Controllers\Admin\AdminCategoryController;
+use App\Http\Controllers\Admin\AdminUserController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -16,6 +19,39 @@ Route::get('/home', function () {
  * @description Show the home page of the site
  */
 Route::get('/', [IndexController::class, 'index'])->name('index');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    /**
+     * @description Show the event management page for the admin
+     */
+    Route::get('/admin-events', [AdminEventController::class, 'index'])->name('admin.events');
+    /**
+     * @store Save an event in database
+     * @update Update an event data in database
+     * @destroy Delete an event in database
+     */
+    Route::resource('admin-events', AdminEventController::class)->only(['store', 'update', 'destroy']);
+    /**
+     * @description Show the category management page for the admin
+     */
+    Route::get('/admin-categories', [AdminCategoryController::class, 'index'])->name('admin.categories');
+    /**
+     * @store Save a category in database
+     * @update Update category data in database
+     * @destroy Delete a category in database
+     */
+    Route::resource('admin-categories', AdminCategoryController::class)->only(['store', 'update', 'destroy']);
+    /**
+     * @description Show the user management page for the admin
+     */
+    Route::get('/admin-users', [AdminUserController::class, 'index'])->name('admin.users');
+    /**
+     * @store Save an user in database
+     * @update Update an user data in database
+     * @destroy Delete an user in database
+     */
+    Route::resource('admin-users', AdminUserController::class)->only(['store', 'update', 'destroy']);
+});
 
 Route::middleware(['auth', 'verified'])->group(function () {
     /**

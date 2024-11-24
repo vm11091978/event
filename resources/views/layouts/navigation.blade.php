@@ -12,9 +12,21 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    @if (Auth::user()->is_admin)
+                    <x-nav-link :href="route('admin.events')" :active="request()->routeIs('admin.events')">
+                        Все мероприятия
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.categories')" :active="request()->routeIs('admin.categories')">
+                        Все категории
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.users')" :active="request()->routeIs('admin.users')">
+                        Все пользователи
+                    </x-nav-link>
+                    @else
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         Мои мероприятия
                     </x-nav-link>
+                    @endif
                     <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
                         Мой профиль
                     </x-nav-link>
@@ -70,12 +82,24 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+            @if (Auth::user()->is_admin)
+            <x-responsive-nav-link :href="route('admin.events')" :active="request()->routeIs('admin.events')">
+                Все мероприятия
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.categories')" :active="request()->routeIs('admin.categories')">
+                Все категории
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.users')" :active="request()->routeIs('admin.users')">
+                Все пользователи
+            </x-responsive-nav-link>
+            @else
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 Мои мероприятия
             </x-responsive-nav-link>
-			<x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
-				Мой профиль
-			</x-nav-link>
+            @endif
+            <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
+                Мой профиль
+            </x-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

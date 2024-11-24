@@ -9,8 +9,17 @@
 
         <!-- Styles / Scripts -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        @if (Auth::user()->is_admin)
+            <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+        @endif
         <script src="{{ asset('js/app.js') }}"></script>
+        @if (Auth::user()->is_admin)
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        @endif
     </head>
+
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
