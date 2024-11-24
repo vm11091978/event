@@ -15,6 +15,11 @@ class EventController extends Controller
      */
     public function index(Request $request): View|RedirectResponse
     {
+        // Если по этому адресу случайно зашёл админ, перенаправим его на страницу панели администратора
+        if ($request->user()->is_admin) {
+            return redirect()->route('admin.events');
+        }
+
         $events = new Event;
 
         $currentUserId = $request->user()->id;
