@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -16,13 +17,30 @@ Route::get('/home', function () {
  */
 Route::get('/', [IndexController::class, 'index'])->name('index');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    /**
+     * @description Show the event registration page for the user
+     */
+    Route::get('/dashboard', [EventController::class, 'index'])->name('dashboard');
+    /**
+     * @update Save the event for a specific user in the database
+     * @destroy Delete the event for a specific user in the database
+     */
+    Route::resource('dashboard', EventController::class)->only(['update', 'destroy']);
+});
 
 Route::middleware('auth')->group(function () {
+    /**
+     * @description Show the user's profile page
+     */
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    /**
+     * @description Update the user's profile in database
+     */
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    /**
+     * @description Delete the user's profile in database
+     */
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 

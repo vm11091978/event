@@ -76,7 +76,7 @@
 					@if (Route::has('login'))
 						<nav class="-mx-3 flex flex-1 justify-end">
 							@auth
-								@if( Auth::user()->is_admin )
+								@if ( Auth::user()->is_admin )
 									<a
 										href="{{ url('/admin-events') }}"
 										class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
@@ -115,7 +115,7 @@
 				<main class="mt-6">
 					<h1 class="text-black" style="font-size: 24px;">Наши мероприятия</h1>
 
-					<p style="">Поиск по сайту среди мероприятий: </p>
+					<p>Поиск по сайту среди мероприятий:</p>
 					<form method="GET" action="{{ route('index') }}">
 						<input name="search" placeholder="Поиск по мероприятиям" autocomplete="off" aria-hidden="false" value="{{ request()->get('search') }}" required />
 						<div aria-hidden="false" class="">
@@ -129,9 +129,9 @@
 							</button>
 						</div>
 					</form>
-					@if(request()->get('search'))
+					@if (request()->get('search'))
 					<ul>
-						@forelse($searchEvents as $eventName)
+						@forelse ($searchEvents as $eventName)
 						<li>{{ $eventName }}</li>
 						@empty
 						<li>Мероприятия не найдены</li>

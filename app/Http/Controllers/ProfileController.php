@@ -50,6 +50,8 @@ class ProfileController extends Controller
 
         Auth::logout();
 
+        // Перед удалением пользователя, нужно сначала отписать его от всех мероприятий
+        $user->events()->detach();
         $user->delete();
 
         $request->session()->invalidate();
