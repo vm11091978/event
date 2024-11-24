@@ -1,11 +1,20 @@
 <?php
 
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+/**
+ * @description Show the home page of laravel framework
+ */
+Route::get('/home', function () {
     return view('welcome');
 });
+
+/**
+ * @description Show the home page of the site
+ */
+Route::get('/', [IndexController::class, 'index'])->name('index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

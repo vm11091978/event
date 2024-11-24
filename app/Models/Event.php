@@ -40,4 +40,31 @@ class Event extends Model
 
         return $categories;
     }
+
+    /**
+     * @return Event[]|Collection
+     */
+    public function getEvents()
+    {
+        $events = Event::where('active', true)
+            ->orderBy('date')
+            ->get();
+
+        return $events;
+    }
+
+    /**
+     * Search in the name and body columns from the events table.
+     *
+     * @param string $search
+     * @return array<string> searchEvents[]
+     */
+    public function searchEvents($search)
+    {
+        $searchEvents = Event::where('name', 'LIKE', "%{$search}%")
+            ->orWhere('description', 'LIKE', "%{$search}%")
+            ->pluck('name');
+
+        return $searchEvents;
+    }
 }
