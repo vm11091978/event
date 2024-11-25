@@ -20,7 +20,7 @@ Route::get('/home', function () {
  */
 Route::get('/', [IndexController::class, 'index'])->name('index');
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'isAdmin', 'isActive'])->group(function () {
     /**
      * @description Show the event management page for the admin
      */
@@ -53,7 +53,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('admin-users', AdminUserController::class)->only(['store', 'update', 'destroy']);
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'isActive'])->group(function () {
     /**
      * @description Show the event registration page for the user
      */
@@ -65,7 +65,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('dashboard', EventController::class)->only(['update', 'destroy']);
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'isActive')->group(function () {
     /**
      * @description Show the user's profile page
      */
