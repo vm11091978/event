@@ -19,11 +19,14 @@
                 </div>
             </div>
 
+            {{-- Админ не должен иметь возможность удалить сам себя --}}
+            @if(! Auth::user()->is_admin)
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="max-w-xl">
                     @include('profile.partials.delete-user-form')
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </x-app-layout>
