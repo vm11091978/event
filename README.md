@@ -11,11 +11,16 @@
 4.	Каждое мероприятие может относиться к нескольким категориям.
 5.	Реализована регистрация пользователей с подтверждением через email.
 6.	Кабинет пользователя:
+
 		a.	Профиль.
+
 		b.	Управление своими записями на мероприятие.
 7.	Админка:
+
 		a.	Управление пользователями (вкл/откл блокировки, удаление).
+
 		b.	Удаление и снятие с публикации мероприятий.
+
 		c.	Управление категориями.
 8.	Поиск по сайту.
 
@@ -24,9 +29,13 @@
 
 Стек технологий PHP/Laravel/PostgresSQL
 
+
 Демка на хостинге: https://polyphyletic-prints.ru/
+
 Тестовые учётные данные:
+
 Админ: логин "admin@admin.ru" пароль "admin"
+
 Юзер: логин "ya.vol-vol@yandex.ru" пароль "1234"
 
 <!--
@@ -90,9 +99,10 @@ Thank you for considering contributing to the Laravel framework! The contributio
 In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
 ## Security Vulnerabilities
--->
+
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+-->
